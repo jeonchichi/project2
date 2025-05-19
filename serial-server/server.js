@@ -1,36 +1,34 @@
 const express = require('express');
-const { SerialPort } = require('serialport'); // 최신 방식
-const { ReadlineParser } = require('@serialport/parser-readline'); // 최신 방식
 const cors = require('cors');
+const { SerialPort } = require('serialport');
 
 const app = express();
-const PORT = 3002;
-
 app.use(cors());
-app.use(express.json());
 
-// ✅ 반드시 객체 형식으로 path & baudRate 지정
+let currentCount = 0;
+
+// ✅ 아두이노 연결 포트 확인 후 수정 (ex: COM4, /dev/ttyUSB0)
 const port = new SerialPort({
-  path: 'COM3',      // 아두이노가 연결된 포트 이름
-  baudRate: 9600
+  path: 'COM4',
+  baudRate: 9600,
 });
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
-
-let latestValue = 0;
-
-parser.on('data', (data) => {
-  const clean = data.trim();
-  if (clean === '0' || clean === '1') {
-    latestValue = parseInt(clean);
-    console.log('💡 아두이노 값:', latestValue);
+// 아두이노로부터 데이터 수신
+port.on('data', (data) => {
+  const input = data.toString().trim();
+  const num = parseInt(input);
+  if (!isNaN(num)) {
+    currentCount = num;
+    console.log(`[시리얼] 현재 인원 수: ${currentCount}`);
   }
 });
 
-app.get('/api/latest-value', (req, res) => {
-  res.json({ value: latestValue });
+// React에서 count 요청
+app.get('/api/count', (req, res) => {
+  res.json({ count: currentCount });
 });
 
+const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`✅ 시리얼 서버 실행 중 → http://localhost:${PORT}`);
+  console.log(`✅ 시리얼 서버 실행 중: http://localhost:${PORT}`);
 });
