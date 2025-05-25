@@ -3,32 +3,40 @@ const cors = require('cors');
 const { SerialPort } = require('serialport');
 
 const app = express();
+const PORT = 3001;
+
 app.use(cors());
 
 let currentCount = 0;
+let lastCount = null;
 
-// ✅ 아두이노 연결 포트 확인 후 수정 (ex: COM4, /dev/ttyUSB0)
+// ✅ 아두이노가 연결된 포트 번호를 정확히 설정
 const port = new SerialPort({
-  path: 'COM4',
-  baudRate: 9600,
+  path: 'COM5', // 사용 중인 포트로 변경 (예: COM3, COM5 등)
+  baudRate: 115200,
 });
 
-// 아두이노로부터 데이터 수신
+// ✅ 시리얼 데이터 수신 처리
 port.on('data', (data) => {
-  const input = data.toString().trim();
-  const num = parseInt(input);
-  if (!isNaN(num)) {
-    currentCount = num;
-    console.log(`[시리얼] 현재 인원 수: ${currentCount}`);
+  const line = data.toString().trim();
+
+  // ✅ 숫자로만 이루어진 줄만 처리
+  if (/^\d+$/.test(line)) {
+    const num = parseInt(line);
+    if (num !== lastCount) {
+      currentCount = num;
+      lastCount = num;
+      console.log(`[시리얼] 현재 인원 수: ${currentCount}`);
+    }
   }
 });
 
-// React에서 count 요청
+// ✅ React에서 현재 인원 수 요청 처리
 app.get('/api/count', (req, res) => {
   res.json({ count: currentCount });
 });
 
-const PORT = 3001;
+// ✅ 서버 실행
 app.listen(PORT, () => {
   console.log(`✅ 시리얼 서버 실행 중: http://localhost:${PORT}`);
 });

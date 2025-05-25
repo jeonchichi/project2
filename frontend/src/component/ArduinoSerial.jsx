@@ -16,7 +16,7 @@ function ArduinoSerial() {
     };
 
     fetchCount(); // 최초 1회
-    const interval = setInterval(fetchCount, 2000); // 2초마다 반복 요청
+    const interval = setInterval(fetchCount, 1000); // 1초마다 반복 요청
     return () => clearInterval(interval);
   }, []);
 
