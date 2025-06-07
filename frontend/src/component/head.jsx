@@ -27,7 +27,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           {isLoggedIn ? (
             <>
               <Link to="/loadmap" className="header__link">
-                캠퍼스 맵
+                캠퍼스맵
               </Link>
               <Link to="/component/mypage" className="header__link">
                 회원정보
