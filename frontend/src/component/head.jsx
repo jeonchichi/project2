@@ -19,7 +19,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <header className="header">
       <div className="header__container">
-        
+        <Link to="/" className="header__logo">
+          <img src="/capstone.png" alt="로고" className="header__logo-img" />
+        </Link>
+
         <nav className="header__nav">
           {isLoggedIn ? (
             <>
@@ -43,6 +46,5 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     </header>
   );
 };
- 
 
 export default Header;
