@@ -169,22 +169,22 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
           </div>
           <div className="notice-content">
             <div className="notice-item">
-              <h3>25.04.04 시간표 업데이트</h3>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <span className="notice-date">2025.04.04</span>
+              <h3>25.05.04 시간표 업데이트</h3>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <span className="notice-date">2025.05.04</span>
+            </div>
+            <div className="notice-item">
+              <h3>25.04.24 시간표 업데이트</h3>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
+              <span className="notice-date">2025.04.24</span>
             </div>
             <div className="notice-item">
               <h3>25.04.04 시간표 업데이트</h3>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
-              <span className="notice-date">2025.04.04</span>
-            </div>
-            <div className="notice-item">
-              <h3>25.04.04 시간표 업데이트</h3>
-              <p>11번 건물 강의실 시간표 업데이트 완료</p>
+              <p>09번 건물 강의실 시간표 업데이트 완료</p>
               <span className="notice-date">2025.04.04</span>
             </div>
           </div>
