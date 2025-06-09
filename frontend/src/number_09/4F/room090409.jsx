@@ -28,7 +28,7 @@ const ClassRoom = () => {
         case 'D': return { day, start:'13:30', end:'14:45' };
         case 'E': return { day, start:'15:00', end:'16:15' };
         case 'F': return { day, start:'16:30', end:'17:45' };
-        case 'G': return { day, start:'18:00', end:'19:15' };
+        // case 'G': return { day, start:'18:00', end:'19:15' };
         default:  return null;
       }
     } else {
@@ -44,7 +44,7 @@ const ClassRoom = () => {
         case 7:  return { day, start:'15:00', end:'15:50' };
         case 8:  return { day, start:'16:00', end:'16:50' };
         case 9:  return { day, start:'17:00', end:'17:50' };
-        case 10: return { day, start:'18:00', end:'18:50' };
+        // case 10: return { day, start:'18:00', end:'18:50' };
         default: return null;
       }
     }
